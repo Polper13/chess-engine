@@ -1,9 +1,8 @@
-#include <iostream>
-
-#include "engineInfo.h"
+#include "uci.h"
 
 int main()
 {
-    std::cout << "hi :3" << std::endl;
+    UCI engine;
+    engine.run();
     return 0;
 }
