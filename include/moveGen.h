@@ -22,4 +22,3 @@ void generatePawnMoves(Board& board, int square, std::vector<Move>& moves);
 void generateKnightMoves(Board& board, int square, std::vector<Move>& moves);
 void generateKingMoves(Board& board, int square, std::vector<Move>& moves);
 
-bool isEnemyPiece(Piece piece, bool isWhiteFriendly);

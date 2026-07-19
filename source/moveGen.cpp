@@ -141,19 +141,3 @@ void generateKingMoves(Board& board, int square, std::vector<Move>& moves)
         }
     }
 }
-
-bool isEnemyPiece(Piece piece, bool isWhiteFriendly)
-{
-    if (piece == EMPTY) return false;
-
-    if (isWhiteFriendly && piece >= 7)
-    {
-        return true;
-    }
-    else if (!isWhiteFriendly && piece <= 6)
-    {
-        return true;
-    }
-
-    return false;
-}
