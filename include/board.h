@@ -9,7 +9,7 @@ enum Piece
 
 struct Board
 {
-    char squares[64];
+    enum Piece squares[64];
     bool whiteToMove;
     bool castleWK, castleWQ, castleBK, castleBQ;
     int enPassantSquare;
