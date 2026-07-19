@@ -141,3 +141,53 @@ void generateKingMoves(Board& board, int square, std::vector<Move>& moves)
         }
     }
 }
+
+void generateQueenMoves(Board& board, int square, std::vector<Move>& moves)
+{
+    static const std::vector<int> queenOffsets = { -8, 8, -1, 1, -9, 9, -7, 7 };
+    generateSlidingMoves(board, square, moves, queenOffsets);
+}
+
+void generateRookMoves(Board& board, int square, std::vector<Move>& moves)
+{
+    static const std::vector<int> rookOffsets = { -8, 8, -1, 1 };
+    generateSlidingMoves(board, square, moves, rookOffsets);
+}
+
+void generateBishopMoves(Board& board, int square, std::vector<Move>& moves)
+{
+    static const std::vector<int> bishopOffsets = { -9, 9, -7, 7 };
+    generateSlidingMoves(board, square, moves, bishopOffsets);
+}
+
+void generateSlidingMoves(Board& board, int square, std::vector<Move>& moves, const std::vector<int>& offsets)
+{
+    bool isWhite = isWhitePiece(board.squares[square]);
+    int file = square % 8;
+    int rank = square / 8;
+
+    for (int offset : offsets)
+    {
+        int i = 1;
+        while (true)
+        {
+            int to = square + offset * i;
+            if (to < 0 || to >= 64) break;
+
+            int toFile = to % 8;
+            int fileDelta = abs(file - toFile);
+            if (fileDelta != i && fileDelta != 0) break;
+
+            int toRank = to / 8;
+            int rankDelta = abs(rank - toRank);
+            if (rankDelta != i && rankDelta != 0) break;
+
+            if (isFriendlyPiece(board.squares[to], isWhite)) break;
+
+            moves.push_back({ square, to });
+
+            if (board.squares[to] != EMPTY) break;
+            i++;
+        }
+    }
+}
