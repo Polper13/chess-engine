@@ -98,6 +98,28 @@ void generatePawnMoves(Board& board, int square, std::vector<Move>& moves)
     }
 }
 
+void generateKnightMoves(Board& board, int square, std::vector<Move>& moves)
+{
+    static const std::vector<int> knightOffsets = { 17, 15, 10, 6, -6, -10, -15, -17 };
+
+    bool isWhite = board.squares[square] == W_KNIGHT;
+    int file = square % 8;
+
+    for (int offset : knightOffsets)
+    {
+        int to = square + offset;
+        if (to < 0 || to >= 64) continue;
+
+        int toFile = to % 8;
+        if (abs(file - toFile) > 2) continue;
+
+        if (board.squares[to] == EMPTY || isEnemyPiece(board.squares[to], isWhite))
+        {
+            moves.push_back({ square, to });
+        }
+    }
+}
+
 bool isEnemyPiece(Piece piece, bool isWhiteFriendly)
 {
     if (piece == EMPTY) return false;
