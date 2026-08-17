@@ -16,6 +16,33 @@ void Move::print()
     std::cout << fromFile << fromRank << toFile << toRank << " ( promotion: " << promotionChar << " castle: " << castleChar << " enpassant: " << enPassChar << " )" << std::endl;
 }
 
+std::vector<Move> generatePseudoLegalMoves(Board& board)
+{
+    std::vector<Move> moves;
+
+    for (int i = 0; i < 64; i++)
+    {
+        Piece piece = board.squares[i];
+
+        // simple filtering
+        if (board.squares[i] == EMPTY) continue;
+        if (isWhitePiece(piece) != board.whiteToMove) continue;
+
+        switch (piece)
+        {
+            case W_PAWN: case B_PAWN: generatePawnMoves(board, i, moves); break;
+            case W_KNIGHT: case B_KNIGHT: generateKnightMoves(board, i, moves); break;
+            case W_BISHOP: case B_BISHOP: generateBishopMoves(board, i, moves); break;
+            case W_ROOK: case B_ROOK: generateRookMoves(board, i, moves); break;
+            case W_QUEEN: case B_QUEEN: generateQueenMoves(board, i, moves); break;
+
+            default: break;
+        }
+    }
+
+    return moves;
+}
+
 void generatePawnMoves(Board& board, int square, std::vector<Move>& moves)
 {
     bool isWhite = board.squares[square] == W_PAWN;
