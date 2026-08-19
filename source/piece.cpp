@@ -17,6 +17,11 @@ bool isFriendlyPiece(Piece piece, bool isWhiteFriendly)
     return isWhiteFriendly == isWhitePiece(piece);
 }
 
+bool isPawn(Piece piece)
+{
+    return piece == W_PAWN || piece == B_PAWN;
+}
+
 char pieceToChar(int piece) 
 {
     static const char chars[] = { '.', 'P','N','B','R','Q','K', 'p','n','b','r','q','k' };

@@ -11,4 +11,6 @@ bool isWhitePiece(Piece piece);
 bool isEnemyPiece(Piece piece, bool isWhiteFriendly);
 bool isFriendlyPiece(Piece piece, bool isWhiteFriendly);
 
+bool isPawn(Piece piece);
+
 char pieceToChar(int piece);
