@@ -45,7 +45,7 @@ std::vector<Move> generatePseudoLegalMoves(Board& board)
 
 void generatePawnMoves(Board& board, int square, std::vector<Move>& moves)
 {
-    bool isWhite = board.squares[square] == W_PAWN;
+    bool isWhite = isWhitePiece(board.squares[square]);
     int from = square;
     int to;
 
@@ -127,9 +127,9 @@ void generatePawnMoves(Board& board, int square, std::vector<Move>& moves)
 
 void generateKnightMoves(Board& board, int square, std::vector<Move>& moves)
 {
-    static const std::vector<int> knightOffsets = { 17, 15, 10, 6, -6, -10, -15, -17 };
+    static constexpr int[8] knightOffsets = { 17, 15, 10, 6, -6, -10, -15, -17 };
 
-    bool isWhite = board.squares[square] == W_KNIGHT;
+    bool isWhite = isWhitePiece(board.squares[square]);
     int file = square % 8;
 
     for (int offset : knightOffsets)
@@ -149,9 +149,9 @@ void generateKnightMoves(Board& board, int square, std::vector<Move>& moves)
 
 void generateKingMoves(Board& board, int square, std::vector<Move>& moves)
 {
-    static const std::vector<int> kingOffsets = { -8, 8, -1, 1, -9, 9, -7, 7 };
+    static constexpr int[8] kingOffsets = { -8, 8, -1, 1, -9, 9, -7, 7 };
 
-    bool isWhite = board.squares[square] == W_KING;
+    bool isWhite = isWhitePiece(board.squares[square]);
     int file = square % 8;
 
     for (int offset : kingOffsets)
@@ -171,19 +171,19 @@ void generateKingMoves(Board& board, int square, std::vector<Move>& moves)
 
 void generateQueenMoves(Board& board, int square, std::vector<Move>& moves)
 {
-    static const std::vector<int> queenOffsets = { -8, 8, -1, 1, -9, 9, -7, 7 };
+    static constexpr int[8] queenOffsets = { -8, 8, -1, 1, -9, 9, -7, 7 };
     generateSlidingMoves(board, square, moves, queenOffsets);
 }
 
 void generateRookMoves(Board& board, int square, std::vector<Move>& moves)
 {
-    static const std::vector<int> rookOffsets = { -8, 8, -1, 1 };
+    static constexpr int[4] rookOffsets = { -8, 8, -1, 1 };
     generateSlidingMoves(board, square, moves, rookOffsets);
 }
 
 void generateBishopMoves(Board& board, int square, std::vector<Move>& moves)
 {
-    static const std::vector<int> bishopOffsets = { -9, 9, -7, 7 };
+    static constexpr int[4] bishopOffsets = { -9, 9, -7, 7 };
     generateSlidingMoves(board, square, moves, bishopOffsets);
 }
 
