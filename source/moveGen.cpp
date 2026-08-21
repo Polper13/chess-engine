@@ -127,12 +127,10 @@ void generatePawnMoves(Board& board, int square, std::vector<Move>& moves)
 
 void generateKnightMoves(Board& board, int square, std::vector<Move>& moves)
 {
-    static constexpr int[8] knightOffsets = { 17, 15, 10, 6, -6, -10, -15, -17 };
-
     bool isWhite = isWhitePiece(board.squares[square]);
     int file = square % 8;
 
-    for (int offset : knightOffsets)
+    for (int offset : KNIGHT_OFFSETS)
     {
         int to = square + offset;
         if (to < 0 || to >= 64) continue;
@@ -149,12 +147,10 @@ void generateKnightMoves(Board& board, int square, std::vector<Move>& moves)
 
 void generateKingMoves(Board& board, int square, std::vector<Move>& moves)
 {
-    static constexpr int[8] kingOffsets = { -8, 8, -1, 1, -9, 9, -7, 7 };
-
     bool isWhite = isWhitePiece(board.squares[square]);
     int file = square % 8;
 
-    for (int offset : kingOffsets)
+    for (int offset : KING_OFFSETS)
     {
         int to = square + offset;
         if (to < 0 || to >= 64) continue;
@@ -171,20 +167,17 @@ void generateKingMoves(Board& board, int square, std::vector<Move>& moves)
 
 void generateQueenMoves(Board& board, int square, std::vector<Move>& moves)
 {
-    static constexpr int[8] queenOffsets = { -8, 8, -1, 1, -9, 9, -7, 7 };
-    generateSlidingMoves(board, square, moves, queenOffsets);
+    generateSlidingMoves(board, square, moves, QUEEN_OFFSETS);
 }
 
 void generateRookMoves(Board& board, int square, std::vector<Move>& moves)
 {
-    static constexpr int[4] rookOffsets = { -8, 8, -1, 1 };
-    generateSlidingMoves(board, square, moves, rookOffsets);
+    generateSlidingMoves(board, square, moves, ROOK_OFFSETS);
 }
 
 void generateBishopMoves(Board& board, int square, std::vector<Move>& moves)
 {
-    static constexpr int[4] bishopOffsets = { -9, 9, -7, 7 };
-    generateSlidingMoves(board, square, moves, bishopOffsets);
+    generateSlidingMoves(board, square, moves, BISHOP_OFFSETS);
 }
 
 void generateSlidingMoves(Board& board, int square, std::vector<Move>& moves, const std::vector<int>& offsets)
