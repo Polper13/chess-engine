@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <span>
 
 #include "board.h"
 
@@ -24,4 +25,4 @@ void generateQueenMoves(Board& board, int square, std::vector<Move>& moves);
 void generateRookMoves(Board& board, int square, std::vector<Move>& moves);
 void generateBishopMoves(Board& board, int square, std::vector<Move>& moves);
 
-void generateSlidingMoves(Board& board, int square, std::vector<Move>& moves, const std::vector<int>& offsets);
+void generateSlidingMoves(Board& board, int square, std::vector<Move>& moves, std::span<const int> offsets);

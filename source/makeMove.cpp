@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 #include "makeMove.h"
 
 void makeMove(Board& board, const Move& move)

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 
 #include "moveGen.h"
 
@@ -180,7 +181,7 @@ void generateBishopMoves(Board& board, int square, std::vector<Move>& moves)
     generateSlidingMoves(board, square, moves, BISHOP_OFFSETS);
 }
 
-void generateSlidingMoves(Board& board, int square, std::vector<Move>& moves, const std::vector<int>& offsets)
+void generateSlidingMoves(Board& board, int square, std::vector<Move>& moves, std::span<const int> offsets)
 {
     bool isWhite = isWhitePiece(board.squares[square]);
     int file = square % 8;
