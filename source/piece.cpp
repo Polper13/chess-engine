@@ -22,6 +22,11 @@ bool isPawn(Piece piece)
     return piece == W_PAWN || piece == B_PAWN;
 }
 
+bool isKnight(Piece piece)
+{
+    return piece == W_KNIGHT || piece == B_KNIGHT;
+}
+
 char pieceToChar(int piece) 
 {
     static const char chars[] = { '.', 'P','N','B','R','Q','K', 'p','n','b','r','q','k' };
