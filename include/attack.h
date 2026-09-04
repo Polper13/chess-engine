@@ -2,6 +2,8 @@
 
 #include "board.h"
 
+#include <span>
+
 bool isSquareAttacked(const Board& board, int square, bool byWhite);
 
 static bool isAttackedByPawn(const Board& board, int square, bool byWhite);
