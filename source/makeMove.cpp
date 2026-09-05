@@ -6,6 +6,8 @@ void makeMove(Board& board, const Move& move)
 {
     if (move.isCastle) handleCastle(board, move);
     if (move.isEnPassant) handleEnPassant(board, move);
+    handleKingTracking(board, move);
+    handleCastlingRights(board, move);
 
     Piece piece = (move.promotion != EMPTY) ? move.promotion : board.squares[move.from];
 
@@ -41,6 +43,27 @@ static void handleCastle(Board& board, const Move& move)
         board.castleWK = board.castleWQ = false;
     else
         board.castleBK = board.castleBQ = false;
+}
+
+static void handleKingTracking(Board& board, const Move& move)
+{
+    Piece piece = board.squares[move.from];
+
+    if (piece == W_KING) board.whiteKingSquare = move.to;
+    if (piece == B_KING) board.blackKingSquare = move.to;
+}
+
+static void handleCastlingRights(Board& board, const Move& move)
+{
+    Piece piece = board.squares[move.from];
+
+    if (piece == W_KING) board.castleWK = board.castleWQ = false;
+    if (piece == B_KING) board.castleBK = board.castleBQ = false;
+
+    if (move.from == 0  || move.to == 0)  board.castleWQ = false;
+    if (move.from == 7  || move.to == 7)  board.castleWK = false;
+    if (move.from == 56 || move.to == 56) board.castleBQ = false;
+    if (move.from == 63 || move.to == 63) board.castleBK = false;
 }
 
 static int calculateEnPassantSquare(const Move& move, Piece piece)

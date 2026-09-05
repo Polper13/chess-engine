@@ -24,6 +24,8 @@ void Board::init()
     whiteToMove = true;
     castleWK = castleWQ = castleBK = castleBQ = true;
     enPassantSquare = -1;
+    whiteKingSquare = 4;
+    blackKingSquare = 60;
 }
 
 void Board::print() const
