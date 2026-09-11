@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include <string.h>
 
 #include "moveGen.h"
 
@@ -15,6 +16,33 @@ void Move::print()
     char enPassChar = (isEnPassant) ? 'y' : 'n';
 
     std::cout << fromFile << fromRank << toFile << toRank << " ( promotion: " << promotionChar << " castle: " << castleChar << " enpassant: " << enPassChar << " )" << std::endl;
+}
+
+void Move::printUCI()
+{
+    auto squareToStr = [](int sq)
+    {
+        std::string s;
+        s += ('a' + sq % 8);
+        s += ('1' + sq / 8);
+        return s;
+    };
+
+    std::cout << squareToStr(from) << squareToStr(to);
+
+    if (promotion != EMPTY)
+    {
+        char promotionChar = ' ';
+        switch (promotion)
+        {
+            case W_QUEEN: case B_QUEEN: promotionChar = 'q'; break;
+            case W_ROOK: case B_ROOK: promotionChar = 'r'; break;
+            case W_BISHOP: case B_BISHOP: promotionChar = 'b'; break;
+            case W_KNIGHT: case B_KNIGHT: promotionChar = 'n'; break;
+            default: break;
+        }
+        std::cout << promotionChar;
+    }
 }
 
 std::vector<Move> generatePseudoLegalMoves(const Board& board)

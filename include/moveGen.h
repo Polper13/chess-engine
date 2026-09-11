@@ -14,6 +14,7 @@ struct Move
     bool isEnPassant = false;
 
     void print();
+    void printUCI();
 };
 
 std::vector<Move> generatePseudoLegalMoves(const Board& board);
