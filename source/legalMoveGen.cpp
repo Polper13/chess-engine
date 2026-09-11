@@ -11,7 +11,7 @@ std::vector<Move> generateLegalMoves(const std::vector<Move>& pseudoLegalMoves, 
         makeMove(copy, move);
 
         // perform the pseudo move on a copy of the board
-        int kingSquare = (board.whiteToMove) ? board.whiteKingSquare : board.blackKingSquare;
+        int kingSquare = (board.whiteToMove) ? copy.whiteKingSquare : copy.blackKingSquare;
         if (isSquareAttacked(copy, kingSquare, !board.whiteToMove))
             continue; // abort because ended up in check
 
