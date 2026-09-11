@@ -17,7 +17,7 @@ void Move::print()
     std::cout << fromFile << fromRank << toFile << toRank << " ( promotion: " << promotionChar << " castle: " << castleChar << " enpassant: " << enPassChar << " )" << std::endl;
 }
 
-std::vector<Move> generatePseudoLegalMoves(Board& board)
+std::vector<Move> generatePseudoLegalMoves(const Board& board)
 {
     std::vector<Move> moves;
 
@@ -44,7 +44,7 @@ std::vector<Move> generatePseudoLegalMoves(Board& board)
     return moves;
 }
 
-void generatePawnMoves(Board& board, int square, std::vector<Move>& moves)
+void generatePawnMoves(const Board& board, int square, std::vector<Move>& moves)
 {
     bool isWhite = isWhitePiece(board.squares[square]);
     int from = square;
@@ -126,7 +126,7 @@ void generatePawnMoves(Board& board, int square, std::vector<Move>& moves)
     }
 }
 
-void generateKnightMoves(Board& board, int square, std::vector<Move>& moves)
+void generateKnightMoves(const Board& board, int square, std::vector<Move>& moves)
 {
     bool isWhite = isWhitePiece(board.squares[square]);
     int file = square % 8;
@@ -146,7 +146,7 @@ void generateKnightMoves(Board& board, int square, std::vector<Move>& moves)
     }
 }
 
-void generateKingMoves(Board& board, int square, std::vector<Move>& moves)
+void generateKingMoves(const Board& board, int square, std::vector<Move>& moves)
 {
     bool isWhite = isWhitePiece(board.squares[square]);
     int file = square % 8;
@@ -166,22 +166,22 @@ void generateKingMoves(Board& board, int square, std::vector<Move>& moves)
     }
 }
 
-void generateQueenMoves(Board& board, int square, std::vector<Move>& moves)
+void generateQueenMoves(const Board& board, int square, std::vector<Move>& moves)
 {
     generateSlidingMoves(board, square, moves, QUEEN_OFFSETS);
 }
 
-void generateRookMoves(Board& board, int square, std::vector<Move>& moves)
+void generateRookMoves(const Board& board, int square, std::vector<Move>& moves)
 {
     generateSlidingMoves(board, square, moves, ROOK_OFFSETS);
 }
 
-void generateBishopMoves(Board& board, int square, std::vector<Move>& moves)
+void generateBishopMoves(const Board& board, int square, std::vector<Move>& moves)
 {
     generateSlidingMoves(board, square, moves, BISHOP_OFFSETS);
 }
 
-void generateSlidingMoves(Board& board, int square, std::vector<Move>& moves, std::span<const int> offsets)
+void generateSlidingMoves(const Board& board, int square, std::vector<Move>& moves, std::span<const int> offsets)
 {
     bool isWhite = isWhitePiece(board.squares[square]);
     int file = square % 8;

@@ -16,13 +16,13 @@ struct Move
     void print();
 };
 
-std::vector<Move> generatePseudoLegalMoves(Board& board);
+std::vector<Move> generatePseudoLegalMoves(const Board& board);
 
-void generatePawnMoves(Board& board, int square, std::vector<Move>& moves);
-void generateKnightMoves(Board& board, int square, std::vector<Move>& moves);
-void generateKingMoves(Board& board, int square, std::vector<Move>& moves);
-void generateQueenMoves(Board& board, int square, std::vector<Move>& moves);
-void generateRookMoves(Board& board, int square, std::vector<Move>& moves);
-void generateBishopMoves(Board& board, int square, std::vector<Move>& moves);
+void generatePawnMoves(const Board& board, int square, std::vector<Move>& moves);
+void generateKnightMoves(const Board& board, int square, std::vector<Move>& moves);
+void generateKingMoves(const Board& board, int square, std::vector<Move>& moves);
+void generateQueenMoves(const Board& board, int square, std::vector<Move>& moves);
+void generateRookMoves(const Board& board, int square, std::vector<Move>& moves);
+void generateBishopMoves(const Board& board, int square, std::vector<Move>& moves);
 
-void generateSlidingMoves(Board& board, int square, std::vector<Move>& moves, std::span<const int> offsets);
+void generateSlidingMoves(const Board& board, int square, std::vector<Move>& moves, std::span<const int> offsets);
