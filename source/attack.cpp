@@ -85,6 +85,7 @@ static bool isAttackedByLeaperPiece(const Board& board, int square, Piece attack
 static bool isAttackedBySlidingPiece(const Board& board, int square, Piece attackerPiece, std::span<const int> offsets)
 {
     int file = square % 8;
+    int rank = square / 8;
 
     for (int offset : offsets)
     {
@@ -96,6 +97,10 @@ static bool isAttackedBySlidingPiece(const Board& board, int square, Piece attac
             int attackerFile = attackerSquare % 8;
             int fileDelta = abs(file - attackerFile);
             if (fileDelta != i && fileDelta != 0) break;
+
+            int attackerRank = attackerSquare / 8;
+            int rankDelta = abs(rank - attackerRank);
+            if (rankDelta != i && rankDelta != 0) break;
 
             if (board.squares[attackerSquare] == attackerPiece) return true;
 
