@@ -36,6 +36,7 @@ std::vector<Move> generatePseudoLegalMoves(const Board& board)
             case W_BISHOP: case B_BISHOP: generateBishopMoves(board, i, moves); break;
             case W_ROOK: case B_ROOK: generateRookMoves(board, i, moves); break;
             case W_QUEEN: case B_QUEEN: generateQueenMoves(board, i, moves); break;
+            case W_KING: case B_KING: generateKingMoves(board, i, moves); break;
 
             default: break;
         }
