@@ -5,7 +5,7 @@ std::vector<Move> generateLegalMoves(const std::vector<Move>& pseudoLegalMoves, 
 {
     std::vector<Move> legalMoves;
 
-    for (Move move : pseudoLegalMoves)
+    for (const Move& move : pseudoLegalMoves)
     {
         Board copy = board;
         makeMove(copy, move);
