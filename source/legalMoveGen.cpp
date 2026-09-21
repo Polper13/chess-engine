@@ -1,6 +1,14 @@
 #include "legalMoveGen.h"
 #include "attack.h"
 
+std::vector<Move> generateMoves(const Board& board)
+{
+    auto pseudoMoves = generatePseudoLegalMoves(board);
+    auto moves = generateLegalMoves(pseudoMoves, board);
+
+    return moves;
+}
+
 std::vector<Move> generateLegalMoves(const std::vector<Move>& pseudoLegalMoves, const Board& board)
 {
     std::vector<Move> legalMoves;

@@ -6,8 +6,7 @@ int perft(const Board& board, int depth)
 {
     if (depth == 0) return 1;
 
-    std::vector<Move> pseudo = generatePseudoLegalMoves(board);
-    std::vector<Move> moves = generateLegalMoves(pseudo, board);
+    auto moves = generateMoves(board);
     int total = 0;
 
     for (Move move : moves)
@@ -21,8 +20,7 @@ int perft(const Board& board, int depth)
 
 void perftDivide(const Board& board, int depth)
 {
-    std::vector<Move> pseudo = generatePseudoLegalMoves(board);
-    std::vector<Move> moves = generateLegalMoves(pseudo, board);
+    auto moves = generateMoves(board);
     int total = 0;
 
     for (Move move : moves)
